@@ -3,6 +3,7 @@ resource "aws_instance" "jenkins" {
   instance_type = "t2.medium"
 
   user_data = file(jenkins.sh)
+  key_name = "servers"
 
   tags {
     Name = "Jenkins"
@@ -15,6 +16,7 @@ resource "aws_instance" "sonar" {
     instance_type = "t2.medium"
 
     user_data = file(sonar.sh)
+    key_name = "servers"
 
     tags {
         Name = "Sonar"
@@ -28,6 +30,7 @@ resource "aws_instance" "nexus" {
     instance_type = "t2.medium"
 
     user_data = file(nexus.sh)
+    key_name = "servers"
   
     tags {
         Name = "Nexus"
