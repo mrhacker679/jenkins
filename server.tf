@@ -4,6 +4,7 @@ resource "aws_instance" "jenkins" {
 
   user_data = file("jenkins.sh")
   key_name = "servers"
+  security_groups = "allow_all"
 
   tags = {
     Name = "Jenkins"
@@ -17,7 +18,7 @@ resource "aws_instance" "sonar" {
 
     user_data = file("sonar.sh")
     key_name = "servers"
-
+    security_groups = "allow_all"
     tags = {
         Name = "Sonar"
     }
@@ -31,9 +32,38 @@ resource "aws_instance" "nexus" {
 
     user_data = file("nexus.sh")
     key_name = "servers"
-  
+    security_groups = "allow_all"
     tags = {
         Name = "Nexus"
     }
 }
+
+
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_all"
+  description = "Allow ALL"
+#   vpc_id      = "default"
+
+  ingress {
+    description      = "ALl"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_all"
+  }
+}
+
 
