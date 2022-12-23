@@ -5,7 +5,7 @@ resource "aws_instance" "jenkins" {
   user_data = file("jenkins.sh")
   key_name = "servers"
 
-  tags {
+  tags = {
     Name = "Jenkins"
   }
 }
@@ -18,7 +18,7 @@ resource "aws_instance" "sonar" {
     user_data = file("sonar.sh")
     key_name = "servers"
 
-    tags {
+    tags = {
         Name = "Sonar"
     }
   
@@ -32,7 +32,7 @@ resource "aws_instance" "nexus" {
     user_data = file("nexus.sh")
     key_name = "servers"
   
-    tags {
+    tags = {
         Name = "Nexus"
     }
 }
