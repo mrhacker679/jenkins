@@ -11,3 +11,6 @@ sudo yum install jenkins -y
 # installing Docker
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin --allowerasing
+
+# to change the jenkins port using env varible 
+# Environment="JENKINS_PORT=8090"
